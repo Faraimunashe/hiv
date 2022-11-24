@@ -17,6 +17,15 @@
                 <form method="POST" action="{{route('register')}}" class="needs-validation" novalidate="">
                     @csrf
                     <div class="form-group">
+                        <label for="role">Role</label>
+                        <select id="role" class="form-control" name="role" tabindex="1" required>
+                            <option selected disabled>Select Role</option>
+                            <option value="patient">Patient</option>
+                            <option value="labtech">Labtech</option>
+                            <option value="nurse">Nurse</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label for="name">Username</label>
                         <input id="name" type="text" class="form-control" name="name" tabindex="1" required autofocus>
                     </div>

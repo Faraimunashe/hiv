@@ -3,8 +3,21 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h4>ART Care Booklet</h4>
+              <h4>Report Data</h4>
               <div class="card-header-form">
+                <form method="GET" action="{{route('nurse-reports')}}">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <select class="form form-control" name="query" required>
+                                <option value="lost follow up"> Lost Follow Up</option>
+                                <option value="dead"> Dead</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                </form>
               </div>
             </div>
             <div class="card-body p-0">
@@ -15,17 +28,14 @@
                             <th>#</th>
                             <th>ART #</th>
                             <th>Fullname</th>
-                            <th>weight</th>
-                            <th>Height</th>
-                            <th>Clinical Stage</th>
-                            <th>TB Status</th>
-                            <th>Next Date</th>
-                            <th>Action</th>
+                            <th>Phone</th>
+                            <th>Gender</th>
+                            <th>Address</th>
                         </tr>
                         @php
                             $count = 0;
                         @endphp
-                        @foreach ($booklets as $item)
+                        @foreach ($reports as $item)
                             <tr>
                                 <td>
                                     @php
@@ -36,19 +46,9 @@
                                 </td>
                                 <td><a href="{{route('nurse-full-details', $item->id)}}"> {{$patient->artnum}} </a></td>
                                 <td>{{$patient->fullname}}</td>
-                                <td>{{$item->weight}}</td>
-                                <td>{{$item->height}}</td>
-                                <td>{{$item->clinical_stage}}</td>
-                                <td>{{$item->tb_status}}</td>
-                                <td>{{$item->next_date}}</td>
-                                <td>
-                                    <form method="GET" action="#">
-                                        <input type="hidden" name="patient_id" value="{{$item->id}}" required>
-                                        <button type="submit" class="btn btn-primary btn-action mr-1" data-toggle="tooltip">
-                                            <i class="fas fa-pencil-square"></i>
-                                        </button>
-                                    </form>
-                                </td>
+                                <td>{{$item->phone}}</td>
+                                <td>{{$item->gender}}</td>
+                                <td>{{$item->address}}</td>
                             </tr>
                         @endforeach
                     </tbody>

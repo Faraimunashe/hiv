@@ -68,51 +68,51 @@
             @if (Auth::user()->hasRole('nurse'))
                 <li class="dropdown">
                     <a href="{{route('nurse-preARTs')}}" class="nav-link">
-                        <i class="fas fa-map-marker"></i>
+                        <i class="fas fa-angle-double-right"></i>
                         <span>Pre-ART Register</span>
                     </a>
                 </li>
                 <li class="dropdown">
                     <a href="{{route('nurse-arts')}}" class="nav-link">
-                        <i class="fas fa-users"></i>
+                        <i class="fas fa-angle-double-right"></i>
                         <span>ART Register</span>
                     </a>
                 </li>
                 <li class="dropdown">
-                    <a href="" class="nav-link">
-                        <i class="fas fa-users"></i>
+                    <a href="{{route('nurse-artcare-booklets')}}" class="nav-link">
+                        <i class="fas fa-angle-double-right"></i>
                         <span>ART Care booklet</span>
                     </a>
                 </li>
                 <li class="dropdown">
-                    <a href="" class="nav-link">
-                        <i class="fas fa-users"></i>
+                    <a href="{{route('nurse-followup')}}" class="nav-link">
+                        <i class="fas fa-angle-double-right"></i>
                         <span>Follow up</span>
                     </a>
                 </li>
                 <li class="dropdown">
-                    <a href="" class="nav-link">
-                        <i class="fas fa-users"></i>
+                    <a href="{{route('nurse-reports')}}" class="nav-link">
+                        <i class="fas fa-angle-double-right"></i>
                         <span>Report</span>
                     </a>
                 </li>
             @elseif (Auth::user()->hasRole('labtech'))
                 <li class="dropdown">
                     <a href="" class="nav-link">
-                        <i class="fas fa-users"></i>
+                        <i class="fas fa-angle-double-right"></i>
                         <span>Upload Result</span>
                     </a>
                 </li>
             @elseif (Auth::user()->hasRole('patient'))
                 <li class="dropdown">
                     <a href="" class="nav-link">
-                        <i class="fas fa-users"></i>
+                        <i class="fas fa-angle-double-right"></i>
                         <span>View Health Record</span>
                     </a>
                 </li>
                 <li class="dropdown">
                     <a href="" class="nav-link">
-                        <i class="fas fa-users"></i>
+                        <i class="fas fa-angle-double-right"></i>
                         <span>Reminder</span>
                     </a>
                 </li>

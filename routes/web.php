@@ -37,7 +37,13 @@ Route::group(['middleware' => ['auth', 'role:nurse']], function () {
     Route::get('/nurse/add-art', 'App\Http\Controllers\nurse\ArtController@add_art')->name('nurse-art-add');
     Route::post('/nurse-add-art', 'App\Http\Controllers\nurse\ArtController@add_art')->name('nurse-add-art');
 
+    Route::get('/nurse/artcare-booklet', 'App\Http\Controllers\nurse\ArtCareBookletController@index')->name('nurse-artcare-booklets');
+
     Route::get('/nurse/full-details/{patient}', 'App\Http\Controllers\nurse\FullDetailController@index')->name('nurse-full-details');
+
+    Route::get('/nurse/follow-up', 'App\Http\Controllers\nurse\FollowUpController@index')->name('nurse-followup');
+
+    Route::get('/nurse/reports', 'App\Http\Controllers\nurse\ReportController@index')->name('nurse-reports');
 });
 
 Route::group(['middleware' => ['auth', 'role:labtech']], function () {
