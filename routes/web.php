@@ -48,10 +48,14 @@ Route::group(['middleware' => ['auth', 'role:nurse']], function () {
 
 Route::group(['middleware' => ['auth', 'role:labtech']], function () {
     Route::get('/labtech/dashboard', 'App\Http\Controllers\labtech\DashboardController@index')->name('labtech-dashboard');
+
+    Route::get('/labtech/dashboard', 'App\Http\Controllers\labtech\DashboardController@index')->name('labtech-art');
 });
 
 Route::group(['middleware' => ['auth', 'role:patient']], function () {
     Route::get('/patient/dashboard', 'App\Http\Controllers\patient\DashboardController@index')->name('patient-dashboard');
+
+    Route::get('/patient/schedule', 'App\Http\Controllers\patient\ScheduleController@index')->name('patient-schedule');
 });
 
 require __DIR__.'/auth.php';

@@ -54,7 +54,7 @@
     <aside id="sidebar-wrapper">
       <div class="sidebar-brand">
         <a href="{{route('dashboard')}}">
-            <span class="logo-name">HIV Adherence</span>
+            <span class="logo-name">HIV Treatment Adherence</span>
         </a>
       </div>
         <ul class="sidebar-menu">
@@ -105,13 +105,13 @@
                 </li>
             @elseif (Auth::user()->hasRole('patient'))
                 <li class="dropdown">
-                    <a href="" class="nav-link">
+                    <a href="{{route('dashboard')}}" class="nav-link">
                         <i class="fas fa-angle-double-right"></i>
                         <span>View Health Record</span>
                     </a>
                 </li>
                 <li class="dropdown">
-                    <a href="" class="nav-link">
+                    <a href="{{route('patient-schedule')}}" class="nav-link">
                         <i class="fas fa-angle-double-right"></i>
                         <span>Reminder</span>
                     </a>
