@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pre_art', function (Blueprint $table) {
+        Schema::create('pills', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('patient_id');
-            $table->integer('status');
+            $table->bigInteger('book_id');
+            $table->string('name');
+            $table->integer('qty');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pre_art');
+        Schema::dropIfExists('pills');
     }
 };

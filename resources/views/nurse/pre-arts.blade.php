@@ -27,14 +27,14 @@
                             <th>Fullname</th>
                             <th>Gender</th>
                             <th>DOB</th>
-                            <th>Status</th>
+                            <th>Address</th>
                             <th>Created At</th>
                             <th>Action</th>
                         </tr>
                         @php
                             $count = 0;
                         @endphp
-                        @foreach ($preARTs as $item)
+                        @foreach ($prearts as $item)
                             <tr>
                                 <td>
                                     @php
@@ -42,19 +42,19 @@
                                         echo $count;
                                     @endphp
                                 </td>
-                                <td>{{$item->number}}</td>
+                                <td><a href="{{route('nurse-full-details', $item->id)}}"> {{$item->artnum}} </a></td>
                                 <td>{{$item->fullname}}</td>
                                 <td>{{$item->sex}}</td>
                                 <td>{{$item->dob}}</td>
-                                <td>{{$item->status}}</td>
+                                <td>{{$item->address}}</td>
                                 <td>{{$item->created_at}}</td>
                                 <td>
-                                    <a class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="" data-original-title="Edit">
-                                        <i class="fas fa-pencil-alt"></i>
-                                    </a>
-                                    <a class="btn btn-danger btn-action" data-toggle="tooltip" title="" data-original-title="Delete">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
+                                    <form method="GET" action="{{route('nurse-art-add')}}">
+                                        <input type="hidden" name="patient_id" value="{{$item->id}}" required>
+                                        <button type="submit" class="btn btn-primary btn-action mr-1" data-toggle="tooltip">
+                                            <i class="fas fa-pencil-alt"></i>
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach

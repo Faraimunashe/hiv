@@ -13,16 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('patients', function (Blueprint $table) {
+        Schema::create('art_care_booklets', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->nullable();
-            $table->string('fullname');
-            $table->string('sex');
-            $table->date('dob');
-            $table->string('address');
-            $table->string('entry_point')->nullable();
-            $table->string('natid');
-            $table->string('phone');
+            $table->bigInteger('patient_id');
+            $table->date('date');
+            $table->integer('weight');
+            $table->integer('height');
+            $table->string('clinical_stage');
+            $table->string('tb_status');
+            $table->date('next_date');
             $table->timestamps();
         });
     }
@@ -34,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('patients');
+        Schema::dropIfExists('art_care_booklets');
     }
 };

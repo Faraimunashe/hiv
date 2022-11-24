@@ -73,7 +73,7 @@
                     </a>
                 </li>
                 <li class="dropdown">
-                    <a href="" class="nav-link">
+                    <a href="{{route('nurse-arts')}}" class="nav-link">
                         <i class="fas fa-users"></i>
                         <span>ART Register</span>
                     </a>

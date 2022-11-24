@@ -5,10 +5,10 @@ namespace App\Http\Controllers\nurse;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller
+class FullDetailController extends Controller
 {
-    public function index()
+    public function index($patient_id)
     {
-        return redirect()->route('nurse-preARTs');
+        return view('nurse.full-detail');
     }
 }

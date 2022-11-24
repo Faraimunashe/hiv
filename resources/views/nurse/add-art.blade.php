@@ -21,42 +21,38 @@
                         {{Session::get('success')}}
                     </div>
                 @endif
-                <form method="POST" action="{{route('nurse-add-preART')}}">
+                <form method="POST" action="{{route('nurse-add-art')}}">
                     @csrf
                     <div class="card-header">
-                        <h4>New Patient Pre-ART</h4>
+                        <h4>Add {{$patient->fullname}} To Art</h4>
                     </div>
-
+                    <input type="hidden" class="form-control" name="patient_id" value="{{$patient_id}}" required>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Fullname</label>
-                                    <input type="text" class="form-control" name="fullname" required>
+                                    <label>Weight</label>
+                                    <input type="number" class="form-control" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Phone</label>
-                                    <input type="tel" class="form-control" name="phone" required>
+                                    <label>Function Status</label>
+                                    <input type="text" class="form-control" name="function_status" required>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Sex</label>
-                                    <select class="form-control" name="sex" required>
-                                        <option selected disabled>Select Gender</option>
-                                        <option value="Male">Male</option>
-                                        <option value="Female">Female</option>
-                                    </select>
+                                    <label>Clinical Stage</label>
+                                    <input type="text" class="form-control" name="clinical_stage" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>DOB</label>
-                                    <input type="date" class="form-control" name="dob" required>
+                                    <label>CD4T Count<label>
+                                    <input type="number" class="form-control" name="cd4t_count" required>
                                 </div>
                             </div>
                         </div>
@@ -88,9 +84,13 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label>Original Regiment</label>
+                            <input type="text" class="form-control" name="original_regiment" required>
+                        </div>
                     </div>
                     <div class="card-footer text-right">
-                        <button class="btn btn-primary mr-1" type="submit">Save data</button>
+                        <button class="btn btn-primary mr-1" type="submit">Save Art</button>
                         <button class="btn btn-secondary" type="reset">Reset</button>
                     </div>
                 </form>
