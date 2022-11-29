@@ -4,6 +4,8 @@ namespace App\Http\Controllers\nurse;
 
 use App\Http\Controllers\Controller;
 use App\Models\ArtCareBooklet;
+use App\Models\Patient;
+use App\Models\Pill;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -17,7 +19,13 @@ class ArtCareBookletController extends Controller
         ]);
     }
 
-
+    public function book($patient_id)
+    {
+        $patient = Patient::find($patient_id);
+        return view('nurse.create-booklet',[
+            'patient' => $patient
+        ]);
+    }
 
     public function add(Request $request)
     {
@@ -26,19 +34,29 @@ class ArtCareBookletController extends Controller
             'weight' => ['required', 'numeric'],
             'height' => ['required', 'numeric'],
             'clinical_stage' => ['required', 'integer'],
-            'tb_status' => ['required', 'string'],
-            'next_time' => ['required', 'date']
+            'next_date' => ['required', 'date', 'after:today'],
+            'name' => ['required', 'string'],
+            'qty' => ['required', 'integer']
         ]);
 
         try{
+            $pill = new Pill();
+
             $bk = new ArtCareBooklet();
+            $bk->date = now();
             $bk->patient_id = $request->patient_id;
             $bk->weight = $request->weight;
             $bk->height = $request->height;
             $bk->clinical_stage = $request->clinical_stage;
             $bk->tb_status = $request->tb_status;
-            $bk->next_time = $request->next_time;
+            $bk->next_date = $request->next_date;
+
             $bk->save();
+
+            $pill->book_id = $bk->id;
+            $pill->name = $request->name;
+            $pill->qty = $request->qty;
+            $pill->save();
 
             return redirect()->back()->with('success', 'Successfully added data to art care booklet');
         }catch(Exception $e)

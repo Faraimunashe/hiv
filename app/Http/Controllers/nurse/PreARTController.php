@@ -14,6 +14,7 @@ class PreARTController extends Controller
     {
         $preARTs = PreArtRegister::join('patients', 'patients.id', '=', 'pre_art_registers.patient_id')
             ->select('patients.id','patients.artnum', 'patients.fullname', 'patients.sex', 'patients.dob', 'patients.phone', 'patients.address', 'patients.created_at')
+            ->where('pre_art_registers.date_eligible', null)
             ->get();
 
         return view('nurse.pre-arts', [
@@ -42,7 +43,7 @@ class PreARTController extends Controller
 
             try{
                 $pat = new Patient();
-                $pat->artnum = rand(1111111111,9999999999);
+                $pat->artnum = rand(11111,99999);
                 $pat->fullname = $request->fullname;
                 $pat->sex = $request->sex;
                 $pat->dob = $request->dob;

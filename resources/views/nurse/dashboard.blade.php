@@ -1,65 +1,86 @@
 <x-app-layout>
     <div class="row ">
-        <div class="col-xl-3 col-lg-6">
-          <div class="card l-bg-green">
-            <div class="card-statistic-3">
-              <div class="card-icon card-icon-large"><i class="fa fa-award"></i></div>
-              <div class="card-content">
-                <h4 class="card-title">ART Register Count</h4>
-                <span>{{\App\Models\ArtRegister::count()}}</span>
-                <p class="mb-0 text-sm">
-                  <span class="text-nowrap">Total Patients in ART Register</span>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-lg-6">
-          <div class="card l-bg-cyan">
-            <div class="card-statistic-3">
-              <div class="card-icon card-icon-large"><i class="fa fa-briefcase"></i></div>
-              <div class="card-content">
-                <h4 class="card-title">PreART Register Count</h4>
-                <span>{{\App\Models\PreArtRegister::count()}}</span>
-                <p class="mb-0 text-sm">
-                  <span class="text-nowrap">PreArt Register Patients</span>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-lg-6">
-          <div class="card l-bg-purple">
-            <div class="card-statistic-3">
-              <div class="card-icon card-icon-large"><i class="fa fa-globe"></i></div>
-              <div class="card-content">
-                <h4 class="card-title"></h4>
-                <span>{{\App\Models\ArtRegister::count()}}</span>
-                <p class="mb-0 text-sm">
-                  <span class="mr-2"><i class="fa fa-arrow-up"></i> 10%</span>
-                  <span class="text-nowrap">Since last month</span>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-lg-6">
-          <div class="card l-bg-orange">
-            <div class="card-statistic-3">
-              <div class="card-icon card-icon-large"><i class="fa fa-money-bill-alt"></i></div>
-              <div class="card-content">
-                <h4 class="card-title">Earning</h4>
-                <span>$2,658</span>
-                <div class="progress mt-1 mb-1" data-height="8" style="height: 8px;">
-                  <div class="progress-bar l-bg-green" role="progressbar" data-width="25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;"></div>
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Search Patient</h4>
                 </div>
-                <p class="mb-0 text-sm">
-                  <span class="mr-2"><i class="fa fa-arrow-up"></i> 10%</span>
-                  <span class="text-nowrap">Since last month</span>
-                </p>
-              </div>
+                <div class="card-body">
+                    <form method="GET" action="{{route('nurse-dashboard')}}">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <div class="form-group">
+                                    <label>ART-NUMBER</label>
+                                    <input type="text" class="form-control" name="search" required>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group mt-4">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fa fa-search"></i>
+                                        Search
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
           </div>
-        </div>
+    </div>
+    <div class="row">
+        @if (!$searches->isEmpty())
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Search Results</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled list-unstyled-border list-unstyled-noborder">
+                            @foreach ($searches as $search)
+                                <li class="media">
+                                    <img alt="image" class="mr-3 rounded-circle" src="{{asset('assets/img/profile.png')}}" width="70">
+                                    <div class="media-body">
+                                    <div class="media-right">
+                                        <div class="text-primary">Approved</div>
+                                    </div>
+                                    <div class="media-title mb-1">{{$search->fullname}}</div>
+                                    <div class="text-time">Patient</div>
+                                    <div class="row">
+                                        <div class="col-md-6 b-r">
+                                            <strong>Gender</strong>
+                                            <br>
+                                            <p class="text-muted">{{$search->sex}}</p>
+                                        </div>
+                                        <div class="col-md-6 b-r">
+                                            <strong>Phone</strong>
+                                            <br>
+                                            <p class="text-muted">{{$search->phone}}</p>
+                                        </div>
+                                        <div class="col-md-6 b-r">
+                                            <strong>DOB</strong>
+                                            <br>
+                                            <p class="text-muted">{{$search->dob}}</p>
+                                        </div>
+                                        <div class="col-md-6 b-r">
+                                            <strong>Address</strong>
+                                            <br>
+                                            <p class="text-muted">{{$search->address}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="media-links">
+                                        <a href="{{route('nurse-full-details', $search->id)}}">
+                                            <i class="fa fa-eye"></i>
+                                            View record
+                                        </a>
+                                    </div>
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        @endif
     </div>
 </x-app-layout>

@@ -10,24 +10,21 @@ class ReportController extends Controller
 {
     public function index(Request $request)
     {
-        if(isset($request->query)){
-            $reports = FollowUp::join('patients', 'patients.id', '=', 'follow_ups.patient_id')
-                ->where('follow_ups.follow_up_status', '%LIKE%', $request->query)
-                ->select('patients.fullname', 'patients.sex', 'patients.phone', 'patients.dob', 'patients.address')
+        $searches = FollowUp::join('patients', 'patients.id', '=', 'follow_ups.patient_id')
+            //->where('follow_ups.follow_up_status', 'LIKE', $request->query)
+            ->select('patients.fullname', 'patients.sex', 'patients.phone', 'patients.dob', 'patients.address', 'patients.id', 'patients.artnum')
+            ->get();
+        if(isset($request->search))
+        {
+            $searches = FollowUp::join('patients', 'patients.id', '=', 'follow_ups.patient_id')
+                ->where('follow_ups.follow_up_status', 'LIKE', $request->search)
+                ->select('patients.fullname', 'patients.sex', 'patients.phone', 'patients.dob', 'patients.address', 'patients.id', 'patients.artnum')
                 ->get();
-
-            return view('nurse.report', [
-                'reports' => $reports
-            ]);
-        }else{
-            $reports = FollowUp::join('patients', 'patients.id', '=', 'follow_ups.patient_id')
-                ->where('follow_ups.follow_up_status', '%LIKE%', 'lost follow up')
-                ->select('patients.fullname', 'patients.sex', 'patients.phone', 'patients.dob', 'patients.address')
-                ->get();
-
-            return view('nurse.report', [
-                'reports' => $reports
-            ]);
         }
+
+        return view('nurse.report', [
+            'reports' => $searches
+        ]);
+
     }
 }

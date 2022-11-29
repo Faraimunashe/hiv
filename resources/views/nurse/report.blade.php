@@ -8,9 +8,12 @@
                 <form method="GET" action="{{route('nurse-reports')}}">
                     <div class="row">
                         <div class="col-md-8">
-                            <select class="form form-control" name="query" required>
-                                <option value="lost follow up"> Lost Follow Up</option>
-                                <option value="dead"> Dead</option>
+                            <select class="form form-control" name="search" required>
+                                <option value="Seen">Seen</option>
+                                <option value="Default">Default</option>
+                                <option value="Lost">Lost</option>
+                                <option value="TO">TO</option>
+                                <option value="Dead">Dead</option>
                             </select>
                         </div>
                         <div class="col-md-4">
@@ -39,15 +42,14 @@
                             <tr>
                                 <td>
                                     @php
-                                        $patient = \App\Models\Patient::find($item->patient_id);
                                         $count++;
                                         echo $count;
                                     @endphp
                                 </td>
-                                <td><a href="{{route('nurse-full-details', $item->id)}}"> {{$patient->artnum}} </a></td>
-                                <td>{{$patient->fullname}}</td>
+                                <td><a href="{{route('nurse-full-details', $item->id)}}"> {{$item->artnum}} </a></td>
+                                <td>{{$item->fullname}}</td>
                                 <td>{{$item->phone}}</td>
-                                <td>{{$item->gender}}</td>
+                                <td>{{$item->sex}}</td>
                                 <td>{{$item->address}}</td>
                             </tr>
                         @endforeach

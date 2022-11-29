@@ -85,7 +85,7 @@
                     </a>
                 </li>
                 <li class="dropdown">
-                    <a href="{{route('nurse-followup')}}" class="nav-link">
+                    <a href="{{route('nurse-followups')}}" class="nav-link">
                         <i class="fas fa-angle-double-right"></i>
                         <span>Follow up</span>
                     </a>

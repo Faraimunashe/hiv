@@ -4,6 +4,7 @@ namespace App\Http\Controllers\nurse;
 
 use App\Http\Controllers\Controller;
 use App\Models\FollowUp;
+use App\Models\Patient;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -14,6 +15,15 @@ class FollowUpController extends Controller
         $followups = FollowUp::latest()->get();
         return view('nurse.follow-up', [
             'followups' => $followups
+        ]);
+    }
+
+    public function follow_up($patient_id)
+    {
+        $patient = Patient::find($patient_id);
+
+        return view('nurse.create-follow-up', [
+            'patient' => $patient
         ]);
     }
 
@@ -29,6 +39,7 @@ class FollowUpController extends Controller
 
         try{
             $flp = new FollowUp();
+            $flp->date = now();
             $flp->patient_id = $request->patient_id;
             $flp->follow_up_status = $request->follow_up_status;
             $flp->tb_status = $request->tb_status;

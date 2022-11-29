@@ -20,7 +20,6 @@
                             <th>Clinical Stage</th>
                             <th>TB Status</th>
                             <th>Next Date</th>
-                            <th>Action</th>
                         </tr>
                         @php
                             $count = 0;
@@ -41,14 +40,6 @@
                                 <td>{{$item->clinical_stage}}</td>
                                 <td>{{$item->tb_status}}</td>
                                 <td>{{$item->next_date}}</td>
-                                <td>
-                                    <form method="GET" action="#">
-                                        <input type="hidden" name="patient_id" value="{{$item->id}}" required>
-                                        <button type="submit" class="btn btn-primary btn-action mr-1" data-toggle="tooltip">
-                                            <i class="fas fa-pencil-square"></i>
-                                        </button>
-                                    </form>
-                                </td>
                             </tr>
                         @endforeach
                     </tbody>

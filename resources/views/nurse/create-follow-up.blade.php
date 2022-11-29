@@ -21,40 +21,44 @@
                         {{Session::get('success')}}
                     </div>
                 @endif
-                <form method="POST" action="{{route('nurse-add-art')}}">
+                <form method="POST" action="{{route('nurse-add-followup')}}">
                     @csrf
                     <div class="card-header">
-                        <h4>Add {{$patient->fullname}} To Art</h4>
+                        <h4>Record Follow Up To {{$patient->fullname}}</h4>
                     </div>
-                    <input type="hidden" class="form-control" name="patient_id" value="{{$patient_id}}" required>
+                    <input type="hidden" class="form-control" name="patient_id" value="{{$patient->id}}" required>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Weight</label>
-                                    <input type="number" name="weight" class="form-control" required>
+                                    <label>Follow Up Status</label>
+                                    <select class="form-control" name="follow_up_status" required>
+                                        <option selected disabled>Selected Follow Up Status</option>
+                                        <option value="Seen">Seen</option>
+                                        <option value="Default">Default</option>
+                                        <option value="Lost">Lost</option>
+                                        <option value="TO">TO</option>
+                                        <option value="Dead">Dead</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Function Status</label>
-                                    <input type="text" class="form-control" name="function_status" required>
+                                    <label>TB Status</label>
+                                    <select class="form-control" name="tb_status" required>
+                                        <option selected disabled>Selected TB Status</option>
+                                        <option value="No Sign">No Sign</option>
+                                        <option value="Suspect">Suspect</option>
+                                        <option value="TBRX">TBRX</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>CD4T Count<label>
+                                    <label>CD4T Count</label>
                                     <input type="number" class="form-control" name="cd4t_count" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Original Regiment</label>
-                                    <input type="text" class="form-control" name="original_regiment" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -64,10 +68,9 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                     <div class="card-footer text-right">
-                        <button class="btn btn-primary mr-1" type="submit">Save Art</button>
+                        <button class="btn btn-primary mr-1" type="submit">Record Follow Up</button>
                     </div>
                 </form>
             </div>
