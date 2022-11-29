@@ -21,76 +21,30 @@
                         {{Session::get('success')}}
                     </div>
                 @endif
-                <form method="POST" action="{{route('nurse-add-art')}}">
+                <form method="POST" action="{{route('labtech-update')}}">
                     @csrf
                     <div class="card-header">
-                        <h4>Add {{$patient->fullname}} To Art</h4>
+                        <h4>Add {{$patient->fullname}} Result</h4>
                     </div>
-                    <input type="hidden" class="form-control" name="patient_id" value="{{$patient_id}}" required>
+                    <input type="hidden" class="form-control" name="patient_id" value="{{$patient->id}}" required>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Weight</label>
-                                    <input type="number" class="form-control" required>
+                                    <label>CD4T Count</label>
+                                    <input type="number" name="cd4t_count" class="form-control" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Function Status</label>
-                                    <input type="text" class="form-control" name="function_status" required>
+                                    <label>Viral Load</label>
+                                    <input type="number" class="form-control" name="viral_load" required>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Clinical Stage</label>
-                                    <input type="text" class="form-control" name="clinical_stage" required>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>CD4T Count<label>
-                                    <input type="number" class="form-control" name="cd4t_count" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Address</label>
-                                    <input type="text" class="form-control" name="address" required>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Entry Point</label>
-                                    <input type="text" class="form-control" name="entry_point" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Status at End</label>
-                                    <input type="text" class="form-control" name="status_at_end" required>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Clinical Stage</label>
-                                    <input type="text" class="form-control" name="clinical_stage" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Original Regiment</label>
-                            <input type="text" class="form-control" name="original_regiment" required>
                         </div>
                     </div>
                     <div class="card-footer text-right">
-                        <button class="btn btn-primary mr-1" type="submit">Save Art</button>
+                        <button class="btn btn-primary mr-1" type="submit">Save Update</button>
                         <button class="btn btn-secondary" type="reset">Reset</button>
                     </div>
                 </form>

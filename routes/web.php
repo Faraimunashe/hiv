@@ -55,7 +55,8 @@ Route::group(['middleware' => ['auth', 'role:nurse']], function () {
 Route::group(['middleware' => ['auth', 'role:labtech']], function () {
     Route::get('/labtech/dashboard', 'App\Http\Controllers\labtech\DashboardController@index')->name('labtech-dashboard');
 
-    Route::get('/labtech/dashboard', 'App\Http\Controllers\labtech\DashboardController@index')->name('labtech-art');
+    Route::get('/labtech/follow-up/{patient_id}', 'App\Http\Controllers\labtech\DashboardController@followup')->name('labtech-followup');
+    Route::post('/labtech/update', 'App\Http\Controllers\labtech\DashboardController@update')->name('labtech-update');
 });
 
 Route::group(['middleware' => ['auth', 'role:patient']], function () {

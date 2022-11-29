@@ -5,8 +5,11 @@ namespace App\Http\Controllers\nurse;
 use App\Http\Controllers\Controller;
 use App\Models\Patient;
 use App\Models\PreArtRegister;
+use App\Models\User;
 use Exception;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class PreARTController extends Controller
 {
@@ -42,8 +45,21 @@ class PreARTController extends Controller
             ]);
 
             try{
+                $artnum = rand(11111,99999);
+
+                $user = User::create([
+                    'name' => $request->fullname,
+                    'email' => $artnum."@hiv.sys",
+                    'password' => Hash::make($artnum),
+                ]);
+
+                $user->attachRole('patient');
+
+                event(new Registered($user));
+
                 $pat = new Patient();
-                $pat->artnum = rand(11111,99999);
+                $pat->artnum = $artnum;
+                $pat->user_id = $user->id;
                 $pat->fullname = $request->fullname;
                 $pat->sex = $request->sex;
                 $pat->dob = $request->dob;
@@ -57,6 +73,7 @@ class PreARTController extends Controller
                 $pre->status_at_end = $request->status_at_end;
                 $pre->clinical_stage = $request->clinical_stage;
                 $pre->save();
+
 
                 return redirect()->back()->with('success', 'Successfully added new patient.');
             }catch(Exception $e)

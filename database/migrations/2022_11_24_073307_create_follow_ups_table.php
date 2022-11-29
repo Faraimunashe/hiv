@@ -19,6 +19,7 @@ return new class extends Migration
             $table->date('date');
             $table->string('follow_up_status');
             $table->string('tb_status');
+            $table->integer('viral_load')->default(90);
             $table->string('clinical_stage')->nullable();
             $table->string('cd4t_count')->nullable();
             $table->timestamps();

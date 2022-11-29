@@ -3,14 +3,14 @@
         <div class="col-12 col-md-12 col-lg-4">
           <div class="card author-box">
             <div class="card-body">
-              <div class="author-box-center">
-                <img alt="image" src="{{asset('assets/img/profile.png')}}" class="rounded-circle author-box-picture">
-                <div class="clearfix"></div>
-                <div class="author-box-name">
-                  <a href="#">{{$patient->fullname}}</a>
+                <div class="author-box-center">
+                    <img alt="image" src="{{asset('assets/img/profile.png')}}" class="rounded-circle author-box-picture">
+                    <div class="clearfix"></div>
+                    <div class="author-box-name">
+                        <a href="#">{{$patient->fullname}}</a>
+                    </div>
+                    <div class="author-box-job">{{$patient->artnum}}</div>
                 </div>
-                <div class="author-box-job">{{$patient->artnum}}</div>
-              </div>
             </div>
           </div>
           <div class="card">
@@ -69,9 +69,83 @@
               <div class="tab-content tab-bordered" id="myTab3Content">
                 <div class="tab-pane fade show active" id="about" role="tabpanel" aria-labelledby="home-tab2">
 
+                    @if (is_null($preart->date_eligible))
+                        <div class="row">
+                            <div class="col-md-6 b-r">
+                                <strong>Date</strong>
+                                <br>
+                                <p class="text-muted">{{$preart->created_at}}</p>
+                            </div>
+                            <div class="col-md-6 b-r">
+                                <strong>Entry Point</strong>
+                                <br>
+                                <p class="text-muted">{{$preart->entry_point}}</p>
+                            </div>
+                            <div class="col-md-6 b-r">
+                                <strong>Status at End</strong>
+                                <br>
+                                <p class="text-muted">{{$preart->status_at_end}}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <strong>Clinical Stage</strong>
+                                <br>
+                                <p class="text-muted">{{$preart->clinical_stage}}</p>
+                            </div>
+                        </div>
+                    @else
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="alert alert-info">
+                                    Transafered On: {{$preart->date_eligible}}
+                                </div>
+                            </div>
+                        </div>
+                    @endif
                 </div>
                 <div class="tab-pane fade" id="settings" role="tabpanel" aria-labelledby="profile-tab2">
+                    @if (is_null($art))
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="alert alert-danger">
+                                    Not yet in ART Register
+                                </div>
+                            </div>
+                        </div>
+                    @else
 
+                            <div class="row">
+                                <div class="col-md-6 b-r">
+                                    <strong>Date Eligible</strong>
+                                    <br>
+                                    <p class="text-muted">{{$art->created_at}}</p>
+                                </div>
+                                <div class="col-md-6 b-r">
+                                    <strong>Function Status</strong>
+                                    <br>
+                                    <p class="text-muted">{{$art->function_status}}</p>
+                                </div>
+                                <div class="col-md-6 b-r">
+                                    <strong>Weight</strong>
+                                    <br>
+                                    <p class="text-muted">{{$art->weight}}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <strong>Clinical Stage</strong>
+                                    <br>
+                                    <p class="text-muted">{{$art->clinical_stage}}</p>
+                                </div>
+                                <div class="col-md-6 b-r">
+                                    <strong>CD4T Count</strong>
+                                    <br>
+                                    <p class="text-muted">{{$art->cd4t_count}}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <strong>Original Regiment</strong>
+                                    <br>
+                                    <p class="text-muted">{{$art->original_regiment}}</p>
+                                </div>
+                            </div>
+                    @endif
                 </div>
               </div>
             </div>
